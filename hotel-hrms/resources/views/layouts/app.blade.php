@@ -255,6 +255,17 @@
         <a href="{{ route('attendance-records.index') }}" class="{{ request()->routeIs('attendance-records.*') ? 'active' : '' }}">Attendance</a>
         <a href="{{ route('payrolls.index') }}" class="{{ request()->routeIs('payrolls.*') ? 'active' : '' }}">Payroll</a>
     </nav>
+    @auth
+        <div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
+            <div style="color: rgba(255, 255, 255, 0.9); font-weight: 600;">
+                {{ auth()->user()->name }}
+            </div>
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <button type="submit" class="btn btn-secondary" style="background: rgba(255,255,255,0.12); color: var(--light); border: 1px solid rgba(255,255,255,0.25);">Log out</button>
+            </form>
+        </div>
+    @endauth
 </header>
 
 <main>
